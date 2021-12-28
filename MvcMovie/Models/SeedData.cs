@@ -23,38 +23,41 @@ namespace MvcMovie.Models
                 context.Movie.AddRange(
                     new Movie
                     {
-                        Title = "When Harry Met Sally",
+                        Title = "牛肉麵",
                         ReleaseDate = DateTime.Parse("1989-2-12"),
-                        Genre = "Romantic Comedy",
-                        Rating = "R",
-                        Price = 7.99M
+                        Introduce = "Romantic Comedy",
+                        number = "10",
+                        Price = 7.99M,
+                        Img = "img/1-1.jpg"
                     },
 
                     new Movie
                     {
-                        Title = "Ghostbusters ",
+                        Title = "陽春麵",
                         ReleaseDate = DateTime.Parse("1984-3-13"),
-                        Genre = "Comedy",
-                        Rating = "R",
-                        Price = 8.99M
+                        Introduce = "Comedy",
+                        number = "10",
+                        Price = 8.99M,
+                        Img = "img/1-2.jpg"
                     },
 
                     new Movie
                     {
-                        Title = "Ghostbusters 2",
+                        Title = "牛肉湯麵",
                         ReleaseDate = DateTime.Parse("1986-2-23"),
-                        Genre = "Comedy",
-                        Rating = "R",
-                        Price = 9.99M
+                        Introduce = "Comedy",
+                        number = "10",
+                        Price = 9.99M,
+                        Img = "img/1-3.jpg"
                     },
 
                     new Movie
                     {
-                        Title = "Rio Bravo",
+                        Title = "餛飩麵",
                         ReleaseDate = DateTime.Parse("1959-4-15"),
-                        Genre = "Western",
-                        Rating = "R",
-                        Price = 3.99M
+                        Introduce = "Western",
+                        number = "10",
+                        Img = "img/1-4.jpg"
                     }
                 );
                 context.SaveChanges();

@@ -1,0 +1,41 @@
+﻿@model MvcMovie.Models.MovieGenreViewModel
+@{
+    ViewData["Title"] = "商店";
+}
+<h1>商店</h1>
+
+<div class="row row-cols-1 row-cols-md-3">
+    @foreach (var item in Model.Movies)
+    {
+        <form action="/purchases/Create" method="get">
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="../@Html.DisplayFor(modelItem => item.Img)" class="card-img-top" style="height:400px;object-fit:cover;width:400px" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                        <input type="hidden" name="Name" value="@Html.DisplayFor(modelItem => item.Title)" />
+                        <p class="card-text">價格:@Html.DisplayFor(modelItem => item.Price)</p>
+                        <input type="hidden" name="Price" value="@Html.DisplayFor(modelItem => item.Price)" />
+                        <p class="card-text">數量</p>
+                        <input type="text" name="Quantity" value="" />
+                        <button class="btn btn-primary" onclick="showform">購買</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+</div>
+<div class="container-fluid" style="display: none;">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Name">
+        <label for="floatingInput">名稱</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput2" placeholder="">
+        <label for="floatingInput2">數量</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput3" placeholder="">
+        <label for="floatingInput3">價格</label>
+    </div>
+</div>
