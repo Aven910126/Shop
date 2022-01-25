@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - 購物商城</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <header>
@@ -25,7 +26,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="Privacy">商店</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="purchases" asp-action="Index">購買紀錄</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Purchases" asp-action="Index">購買紀錄</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Logins" asp-action="Index">登入</a>
                         </li>
                     </ul>
                 </div>
@@ -40,7 +44,7 @@
 
     <footer class="border-top footer text-muted navbar-light bg-white">
         <div class="container">
-            &copy; 2022 - Movie App - <a asp-area="" asp-controller="movies" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - Beefnoodles - <a asp-area="" asp-controller="movies" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

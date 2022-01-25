@@ -7,13 +7,16 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Data
 {
-    public class purchaseContext : DbContext
+    public class PurchaseContext : DbContext
     {
-        public purchaseContext (DbContextOptions<purchaseContext> options)
+
+        public PurchaseContext (DbContextOptions<PurchaseContext> options)
             : base(options)
         {
         }
 
-        public DbSet<MvcMovie.Models.Purchase> purchase { get; set; }
+        public DbSet<MvcMovie.Models.Purchase> Purchase { get; set; }
+        public DbSet<MvcMovie.Models.Movie> Movie { get; set; }
+        public DbSet<MvcMovie.Models.Login> Login { get; set; }
     }
 }

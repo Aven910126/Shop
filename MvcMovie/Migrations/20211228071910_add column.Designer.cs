@@ -9,16 +9,16 @@ using MvcMovie.Data;
 
 namespace MvcMovie.Migrations
 {
-    [DbContext(typeof(MvcMovieContext))]
-    [Migration("20211220161411_prchase")]
-    partial class prchase
+    [DbContext(typeof(MovieContext))]
+    [Migration("20211228071910_add column")]
+    partial class addcolumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("MvcMovie.Models.Movie", b =>
@@ -28,7 +28,13 @@ namespace MvcMovie.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Img")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Introduce")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
@@ -38,10 +44,6 @@ namespace MvcMovie.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<string>("number")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

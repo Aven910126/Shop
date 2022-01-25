@@ -53,15 +53,15 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.number)
+                @Html.DisplayFor(modelItem => item.Number)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Introduce)
             </td>
             <td>
-                @*<a asp-action="Edit" asp-route-id="@item.Id">修改存貨</a> |*@
+                <a asp-action="Edit" asp-route-id="@item.Id">修改存貨</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">詳細</a>
-                @*<a asp-action="Delete" asp-route-id="@item.Id">刪除</a>*@
+                <a asp-action="Delete" asp-route-id="@item.Id">刪除</a>
             </td>
         </tr>
         }

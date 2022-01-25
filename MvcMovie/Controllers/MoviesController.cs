@@ -12,9 +12,9 @@ namespace MvcMovie.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly MvcMovieContext _context;
+        private readonly MovieContext _context;
 
-        public MoviesController(MvcMovieContext context)
+        public MoviesController(MovieContext context)
         {
             _context = context;
         }
@@ -78,7 +78,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,number,Price,Introduce,Img")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Price,Number,Img,Introduce")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +110,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,number,Price,Introduce,Img")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Price,Number,Img,Introduce")] Movie movie)
         {
             if (id != movie.Id)
             {
@@ -158,21 +158,21 @@ namespace MvcMovie.Controllers
             return View(movie);
         }
 
-        // POST: Movies/Delete/6
-        [HttpPost]
+        // POST: Movies/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, bool notUsed)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var movie = await _context.Movie.FindAsync(id);
             _context.Movie.Remove(movie);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.Id == id);
         }
-   
         public async Task<IActionResult> Privacy(string movieGenre, string searchString)
         {
             // Use LINQ to get list of genres.
@@ -201,5 +201,6 @@ namespace MvcMovie.Controllers
 
             return View(movieGenreVM);
         }
+
     }
 }

@@ -13,10 +13,11 @@ namespace MvcMovie.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    number = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Img = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Introduce = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

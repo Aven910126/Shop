@@ -9,9 +9,9 @@ using MvcMovie.Data;
 
 namespace MvcMovie.Migrations
 {
-    [DbContext(typeof(MvcMovieContext))]
-    [Migration("20211220161834_purchase renew")]
-    partial class purchaserenew
+    [DbContext(typeof(MovieContext))]
+    [Migration("20211228071604_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,13 @@ namespace MvcMovie.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Img")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Introduce")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
@@ -38,10 +44,6 @@ namespace MvcMovie.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<string>("number")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

@@ -10,7 +10,8 @@
         <form action="/purchases/Create" method="get">
             <div class="col mb-4">
                 <div class="card">
-                    <img src="../@Html.DisplayFor(modelItem => item.Img)" class="card-img-top" style="height:400px;object-fit:cover;width:400px" alt="...">
+
+                    <img src="../@Html.DisplayFor(modelItem =>item.Img)" class="card-img-top" style="height:400px;object-fit:cover;width:400px" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
                         <input type="hidden" name="Name" value="@Html.DisplayFor(modelItem => item.Title)" />
@@ -23,6 +24,7 @@
                 </div>
             </div>
         </form>
+
     }
 </div>
 <div class="container-fluid" style="display: none;">
@@ -39,3 +41,8 @@
         <label for="floatingInput3">價格</label>
     </div>
 </div>
+
+<script>
+        
+
+</script>

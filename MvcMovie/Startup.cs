@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
+//using MvcMovie.Data;
 
 namespace MvcMovie
 {
@@ -27,11 +28,12 @@ namespace MvcMovie
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<MvcMovieContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));    
+            services.AddDbContext<MovieContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("PurchaseContext")));
 
-            services.AddDbContext<purchaseContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+            services.AddDbContext<PurchaseContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("PurchaseContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,7 +2,7 @@
 
 namespace MvcMovie.Migrations
 {
-    public partial class prchase : Migration
+    public partial class addcolumn : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

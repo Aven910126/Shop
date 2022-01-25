@@ -2,31 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
-using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
-    public class PurchasesController : Controller
+    public class LoginsController : Controller
     {
         private readonly PurchaseContext _context;
 
-        public PurchasesController(PurchaseContext context)
+        public LoginsController(PurchaseContext context)
         {
             _context = context;
         }
-        // GET: Purchases
+
+        // GET: Logins
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Purchase.ToListAsync());
+            return View(await _context.Login.ToListAsync());
         }
 
-        // GET: Purchases/Details/5
+        // GET: Logins/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,49 +32,39 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
 
-            var purchase = await _context.Purchase
+            var login = await _context.Login
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (purchase == null)
+            if (login == null)
             {
                 return NotFound();
             }
 
-            return View(purchase);
+            return View(login);
         }
 
-        // GET: Purchase
-        public IActionResult Create(string Name, string Quantity, string Price)
+        // GET: Logins/Create
+        public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Purchases/Create
+        // POST: Logins/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Quantity,Price")] Purchase purchase)
+        public async Task<IActionResult> Create([Bind("Id,Account,Password")] Login login)
         {
             if (ModelState.IsValid)
             {
-                var pro = await _context.Movie
-                 .AsNoTracking()
-                 .FirstOrDefaultAsync(m => m.Title == purchase.Name);
-                int q = Int32.Parse(pro.Number) - Int32.Parse(purchase.Quantity);
-                /* int P = (pro.Price * pro.Quantity + purchase.PurchasePrice) / (purchase.PurchaseQuantity + pro.Quantity);*///計算平均存貨價格
-                if (q < 0) {
-                    q = Int32.Parse(pro.Number);
-                }
-                var product = new Movie { Id = pro.Id, Title = purchase.Name, ReleaseDate = pro.ReleaseDate, Price=pro.Price, Number = "" + q , Img =pro.Img , Introduce =pro.Introduce };
-                _context.Add(purchase);//新增新的進貨項目
-                _context.Movie.Update(product);//更新存貨資料表
+                _context.Add(login);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            /*ViewData["ProductID"] = new SelectList(_context.Id, "ProductID", "ProductID", purchase.Id);*/
-            return View(purchase);
+            return View(login);
         }
-        // GET: Purchases/Edit/5
+
+        // GET: Logins/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,22 +72,22 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
 
-            var purchase = await _context.Purchase.FindAsync(id);
-            if (purchase == null)
+            var login = await _context.Login.FindAsync(id);
+            if (login == null)
             {
                 return NotFound();
             }
-            return View(purchase);
+            return View(login);
         }
 
-        // POST: Purchases/Edit/5
+        // POST: Logins/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Quantity,Price")] Purchase purchase)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Account,Password")] Login login)
         {
-            if (id != purchase.Id)
+            if (id != login.Id)
             {
                 return NotFound();
             }
@@ -108,12 +96,12 @@ namespace MvcMovie.Controllers
             {
                 try
                 {
-                    _context.Update(purchase);
+                    _context.Update(login);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PurchaseExists(purchase.Id))
+                    if (!LoginExists(login.Id))
                     {
                         return NotFound();
                     }
@@ -124,10 +112,10 @@ namespace MvcMovie.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(purchase);
+            return View(login);
         }
 
-        // GET: Purchases/Delete/5
+        // GET: Logins/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,30 +123,30 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
 
-            var purchase = await _context.Purchase
+            var login = await _context.Login
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (purchase == null)
+            if (login == null)
             {
                 return NotFound();
             }
 
-            return View(purchase);
+            return View(login);
         }
 
-        // POST: Purchases/Delete/5
+        // POST: Logins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var purchase = await _context.Purchase.FindAsync(id);
-            _context.Purchase.Remove(purchase);
+            var login = await _context.Login.FindAsync(id);
+            _context.Login.Remove(login);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PurchaseExists(int id)
+        private bool LoginExists(int id)
         {
-            return _context.Purchase.Any(e => e.Id == id);
+            return _context.Login.Any(e => e.Id == id);
         }
     }
 }
